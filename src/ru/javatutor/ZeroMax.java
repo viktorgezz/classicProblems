@@ -1,7 +1,5 @@
 package ru.javatutor;
 
-import javax.sound.midi.Soundbank;
-
 public class ZeroMax {
 
     public int[] zeroMax(int[] nums) {
