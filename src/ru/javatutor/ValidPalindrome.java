@@ -1,30 +1,26 @@
 package ru.javatutor;
 
 public class ValidPalindrome {
-    public boolean isPalindrome(String text) {
-        text = text.toLowerCase();
-        text = getLetters(text);
-        System.out.println(text);
-        for (int i = 0; i < text.length(); i++) {
-            if (text.charAt(i) != text.charAt(text.length() - 1 - i)) {
+    public boolean isPalindrome(String s) {
+        int left = 0;
+        int right = s.length() - 1;
+
+        while (left < right) {
+            char leftChar = s.charAt(left);
+            char rightChar = s.charAt(right);
+
+            while (!Character.isLetterOrDigit(leftChar) && left < right) {
+                leftChar = s.charAt(++left);
+            }
+            while (!Character.isLetterOrDigit(rightChar) && left < right) {
+                rightChar = s.charAt(--right);
+            }
+            if (left > right || Character.toLowerCase(leftChar) != Character.toLowerCase(rightChar)) {
                 return false;
             }
+            left++;
+            right--;
         }
         return true;
     }
-
-    public static String getLetters(String text) {
-        StringBuilder newText = new StringBuilder();
-        for (int j = 0; j < text.length(); j++) {
-            if (text.charAt(j) == ' ') {
-                continue;
-            }
-            if (!(text.codePointAt(j) >= 97 && text.codePointAt(j) <= 122)) {
-                continue;
-            }
-            newText.append(text.charAt(j));
-        }
-        return newText.toString();
-    }
-
 }
